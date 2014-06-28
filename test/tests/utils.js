@@ -69,8 +69,10 @@ describe('utils.js', function () {
 		var joinPaths = utils.__get__('joinPaths');
 
 		it('should join the paths correctly', function () {
-			expect(joinPaths('aa', 'bb', 'cc')).to.equal('/aa/bb/cc');
+			expect(joinPaths('aa', 'bb', 'cc')).to.equal('aa/bb/cc');
 			expect(joinPaths('/aa/', '/bb/', 'cc')).to.equal('/aa/bb/cc');
+			expect(joinPaths('', '')).to.equal('/');
+			expect(joinPaths('/', '/')).to.equal('/');
 		});
 
 		it('should preserve the trailing slash', function () {

@@ -54,18 +54,9 @@ function isEmpty(value) {
  * @private
  */
 function joinPaths(parts) {
-	var path = '';
-
-	for (var i = 0, c = arguments.length - 1; i < c; i++) {
-		if (arguments[i]) {
-			path += '/' + arguments[i].replace(/^\/|\/$/g, '');
-		}
-	}
-
-	return path + (arguments[c]
-		? arguments[c].replace(/^([^/])/, '/$1')
-		: ''
-	);
+	return Array.prototype.slice.call(arguments)
+		.join('/')
+		.replace(/\/+/g, '/');
 }
 
 /**
