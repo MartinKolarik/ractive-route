@@ -7,6 +7,7 @@ Simple routing library for Ractive.js with support for two way (model <-> URI) d
 ## Get started
 
 There are three ways to get ractive-route:
+
 1. Use CDN - // TODO add link
 2. [Download the latest release](https://github.com/MartinKolarik/ractive-route/releases).
 3. Clone the repo: `$ git clone https://github.com/MartinKolarik/ractive-route.git`.
