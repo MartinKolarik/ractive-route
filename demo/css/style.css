@@ -1,0 +1,42 @@
+body, h1, input, a {
+	font-family: 'Source Code Pro', sans-serif;
+	color: #1abc9c
+}
+
+body {
+	background: url('../img/brickwall.png');
+	text-align: center;
+}
+
+h1 {
+	font-size: 60px;
+	font-weight: 200;
+}
+
+input {
+	border: none;
+	border-bottom: 1px solid #1abc9c;
+	width: 600px;
+	height: 80px;
+	font-size: 40px;
+	font-weight: 200;
+	line-height: 50px;
+	outline: none;
+	background-color: transparent;
+	margin-bottom: 15px;
+}
+
+a {
+	text-decoration: none;
+}
+
+#links {
+	position: fixed;
+	bottom: 100px;
+	left: 0;
+	right: 0;
+}
+
+#links a + a {
+	margin-left: 15px;
+}

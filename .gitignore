@@ -1,0 +1,4 @@
+.dev*
+.idea/
+.local/
+node_modules/

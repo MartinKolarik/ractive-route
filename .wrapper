@@ -1,0 +1,26 @@
+/*!
+ * <%= pkg.name %> <%= pkg.version %>
+ * <%= pkg.homepage %>
+ *
+ * Copyright (c) 2014 <%= pkg.author.name %>
+ * <%= pkg.author.email %>
+ * <%= pkg.author.url %>
+ *
+ * Licensed under the MIT license
+ * http://www.opensource.org/licenses/MIT
+ */
+
+(function (factory) {
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = factory(require('ractive'));
+	} else if (typeof define === 'function' && define.amd) {
+		define([ 'ractive' ], factory);
+	} else {
+		factory(window.Ractive);
+	}
+})(function (Ractive) {
+	<%= src %>
+
+	Router.Route = Route;
+	return Ractive.Router = Router;
+});
