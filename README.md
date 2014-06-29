@@ -65,9 +65,10 @@ Ractive component to handle the requests.
 **Observe** `Object`
 
 This object can contain one or more of the following properties:
-	- `qs` - a list of keys that will be observed and synced with query string.
-	- `hash` - a list of keys that will be observed and synced with hash.
-	- `state` - a list of keys that will be observed and synced with the History API.
+
+- `qs` - a list of keys that will be observed and synced with query string.
+- `hash` - a list of keys that will be observed and synced with hash.
+- `state` - a list of keys that will be observed and synced with the History API.
 
 ### dispatch(request[, options])
 
