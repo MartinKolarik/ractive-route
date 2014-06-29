@@ -1,5 +1,5 @@
 /*!
- * ractive-route 0.1.0
+ * ractive-route 0.1.1
  * https://github.com/MartinKolarik/ractive-route/
  *
  * Copyright (c) 2014 Martin Kolárik
@@ -556,18 +556,9 @@
 	 * @private
 	 */
 	function joinPaths(parts) {
-		var path = '';
-	
-		for (var i = 0, c = arguments.length - 1; i < c; i++) {
-			if (arguments[i]) {
-				path += '/' + arguments[i].replace(/^\/|\/$/g, '');
-			}
-		}
-	
-		return path + (arguments[c]
-			? arguments[c].replace(/^([^/])/, '/$1')
-			: ''
-		);
+		return Array.prototype.slice.call(arguments)
+			.join('/')
+			.replace(/\/+/g, '/');
 	}
 	
 	/**
