@@ -24,6 +24,12 @@
 			it('should create a list of all observed keys', function () {
 				expect(new Route('', Handler, { qs: [ 'a' ], hash: [ 'b' ], state: [ 'c' ]}).allObserved).to.deep.equal([ 'a', 'b', 'c' ]);
 			});
+
+			it('should support function as a handler', function () {
+				var handler = function () {};
+
+				expect(new Route('', handler).Handler).to.equal(handler);
+			});
 		});
 
 		describe('destroy()', function () {
@@ -51,6 +57,16 @@
 		describe('init()', function () {
 			var Handler = Ractive.extend({
 				data: { a: 1, b: 2, c: 3, x: 4 }
+			});
+
+			it('should call this.Handler() even if it\'s not a Ractive component', function (done) {
+				var route = new Route('/a', function (options) {
+					expect(options).to.have.ownProperty('el');
+					expect(options.data).to.deep.equal({ z: 5 });
+					done();
+				}, { qs: [ 'z' ] });
+
+				route.init({ path: '/a', qs: '?z=5', hash: '' }, {});
 			});
 
 			it('should init new Ractive instance with correct data', function () {

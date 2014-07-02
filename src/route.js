@@ -13,7 +13,8 @@ function Route(pattern, Handler, observe, router) {
 	this.map = parsePattern(pattern);
 	this.regExp = patternToRegExp(pattern);
 	this.strictRegExp = patternToStrictRegExp(pattern);
-	this.Handler = extendHandler(Handler);
+	this.isComponent = !!Handler.extend;
+	this.Handler = this.isComponent ? extendHandler(Handler) : Handler;
 	this.observe = assign({ qs: [], hash: [], state: [] }, observe);
 	this.allObserved = this.observe.qs.concat(this.observe.hash, this.observe.state);
 	this.router = router || {};
@@ -73,23 +74,28 @@ Route.prototype.init = function (uri, data) {
 		parseHash(uri.hash, this.observe.hash)
 	);
 
-	// init new Ractive
-	this.view = new this.Handler({
-		el: this.router.el,
-		data: data
-	});
+	// not a component
+	if (!this.isComponent) {
+		this.Handler({ el: this.router.el, data: data });
+	} else {
+		// init new Ractive
+		this.view = new this.Handler({
+			el: this.router.el,
+			data: data
+		});
 
-	// observe
-	if (this.allObserved.length) {
-		this.view.observe(this.allObserved.join(' '), function () {
-			if (!_this.updating) {
-				_this.router.update();
-			}
-		}, { init: false });
+		// observe
+		if (this.allObserved.length) {
+			this.view.observe(this.allObserved.join(' '), function () {
+				if (!_this.updating) {
+					_this.router.update();
+				}
+			}, { init: false });
+		}
+
+		// notify Ractive we're done here
+		this.view.set('__ready', true);
 	}
-
-	// notify Ractive we're done here
-	this.view.set('__ready', true);
 
 	return this;
 };

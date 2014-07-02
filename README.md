@@ -60,7 +60,7 @@ By default, every variable will match anything except `/`. You can specify a pat
 
 **Handler** `function`
 
-Ractive component to handle the requests.
+Ractive component or function to handle the requests.
 
 **Observe** `Object`
 
