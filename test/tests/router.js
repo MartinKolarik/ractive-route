@@ -185,6 +185,26 @@
 
 				router.dispatch('/xx#x', { reload: true });
 			});
+
+			it('should call .update() with `pathChange` === true', function (done) {
+				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx');
+				router.update = function (pathChange) {
+					expect(pathChange).to.be.true;
+					done();
+				};
+
+				router.dispatch('/yy');
+			});
+
+			it('should call .update() with `pathChange` === false', function (done) {
+				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx');
+				router.update = function (pathChange) {
+					expect(pathChange).to.be.false;
+					done();
+				};
+
+				router.dispatch('/xx');
+			});
 		});
 
 		describe('init()', function () {

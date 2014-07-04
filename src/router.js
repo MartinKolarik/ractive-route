@@ -97,7 +97,7 @@ Router.prototype.dispatch = function (request, options) {
 	scrollTo(uri.hash.substr(1));
 
 	// update history
-	return this.update(!oldUri.path || oldUri.path === uri.path, !options.noHistory, uri);
+	return this.update(!oldUri.path || oldUri.path !== uri.path, !options.noHistory, uri);
 };
 
 /**
