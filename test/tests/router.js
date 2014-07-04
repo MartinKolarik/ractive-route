@@ -40,11 +40,11 @@
 				expect(router.buildHash()).to.equal('#!%7B%22a%22%3A1%2C%22b%22%3A2%7D');
 			});
 
-			it('should return location.hash', function () {
+			it('should return correct hash', function () {
 				var router = new Router({});
 				router.route = new Router.Route('', Handler).init({ path: '', qs: '', hash: '' }, {});
 
-				expect(router.buildHash(true)).to.equal(location.hash);
+				expect(router.buildHash('#x')).to.equal('#x');
 			});
 		});
 
@@ -60,11 +60,11 @@
 				expect(router.buildQS()).to.equal('?a=1&b=2');
 			});
 
-			it('should return location.search', function () {
+			it('should return correct QS', function () {
 				var router = new Router({});
 				router.route = new Router.Route('', Handler).init({ path: '', qs: '', hash: '' }, {});
 
-				expect(router.buildQS()).to.equal(location.search);
+				expect(router.buildQS([ { x: 5 } ])).to.equal('?x=5');
 			});
 		});
 
@@ -124,7 +124,7 @@
 			});
 
 			it('shouldn\'t dispatch the request if QS didn\'t change', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx?x');
+				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx?x=5');
 				router.update = function () {
 					done();
 				};
@@ -132,11 +132,11 @@
 					done(new Error('Request dispatched.'));
 				};
 
-				router.dispatch('/xx?x');
+				router.dispatch('/xx?x=5');
 			});
 
 			it('shouldn\'t dispatch the request if observed hash didn\'t change', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler, { hash: [ 'x' ] }).dispatch('/xx#x');
+				var router = new Router(options).addRoute('/:aa', Handler, { hash: [ 'x' ] }).dispatch('/xx#!{"x":5}');
 				router.update = function () {
 					done();
 				};
@@ -144,7 +144,7 @@
 					done(new Error('Request dispatched.'));
 				};
 
-				router.dispatch('/xx#x');
+				router.dispatch('/xx#!{"x":5}');
 			});
 
 			it('shouldn\'t dispatch the request if hash changed but it\'s not being observed', function (done) {

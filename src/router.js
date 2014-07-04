@@ -36,29 +36,27 @@ Router.prototype.addRoute = function (pattern, Handler, observe) {
 /**
  * Build hash
  *
- * @param {boolean} preserve
+ * @param {string} mixIn
  * @returns {string}
  * @private
  */
-Router.prototype.buildHash = function (preserve) {
+Router.prototype.buildHash = function (mixIn) {
 	var data = this.route.getState().hash;
 
-	return !isEmpty(data) || !preserve
+	return !isEmpty(data) || !mixIn
 		? stringifyHash(data)
-		: location.hash;
+		: mixIn;
 };
 
 /**
  * Build QS
  *
- * @param {boolean} merge
+ * @param {Array} mixIn
  * @returns {string}
  * @private
  */
-Router.prototype.buildQS = function (merge) {
-	return merge
-		? stringifyQS(assign(parseQS(location.search), this.route.getState().qs))
-		: stringifyQS(this.route.getState().qs);
+Router.prototype.buildQS = function (mixIn) {
+	return stringifyQS(assign.apply(null, [{}].concat(mixIn, this.route.getState().qs)));
 };
 
 /**
@@ -99,7 +97,7 @@ Router.prototype.dispatch = function (request, options) {
 	scrollTo(uri.hash.substr(1));
 
 	// update history
-	return this.update(!oldUri.path || oldUri.path === uri.path, !options.noHistory);
+	return this.update(!oldUri.path || oldUri.path === uri.path, !options.noHistory, uri);
 };
 
 /**
@@ -190,17 +188,24 @@ Router.prototype.unwatchState = function () {
  *
  * @param {boolean} [pathChange]
  * @param {boolean} [history] - true = always, false = never, undefined = if something changed
+ * @param {Object} [uri]
  * @returns {Router}
  * @private
  */
-Router.prototype.update = function (pathChange, history) {
+Router.prototype.update = function (pathChange, history, uri) {
 	if (!this.route) {
 		return this;
 	}
 
-	var newUri = joinPaths(this.basePath, this.uri.path) + this.buildQS(pathChange) + this.buildHash(pathChange);
+	uri = uri || { qs: '', hash: '' };
+	var path = joinPaths(this.basePath, this.uri.path);
+	var qs = this.buildQS([ parseQS(uri.qs) ].concat(!pathChange ? [ parseQS(location.search) ] : []));
+	var hash = this.buildHash(uri.hash);
+	var newUri = path + qs + hash;
 	var oldUri = location.pathname + location.search + location.hash;
 	var state = this.route.getState().state;
+	this.uri.qs = qs;
+	this.uri.hash = hash;
 
 	if (history === true) {
 		this.history.pushState(state, null, newUri);
@@ -271,5 +276,5 @@ Router.prototype.watchState = function () {
 function shouldDispatch(oldUri, newUri, route) {
 	return oldUri.path !== newUri.path
 		|| oldUri.qs !== newUri.qs
-		|| (oldUri.hash !== newUri.hash && (!route || route.observe.hash.length));
+		|| (decodeURIComponent(oldUri.hash) !== decodeURIComponent(newUri.hash) && (!route || route.observe.hash.length));
 }
