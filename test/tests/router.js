@@ -1,6 +1,14 @@
 (function () {
 	var expect = chai.expect;
 	var Router = Ractive.Router;
+	var el = document.createElement('div');
+
+	el.id = 'el';
+	document.body.appendChild(el);
+
+	beforeEach(function () {
+		el.innerHTML = '';
+	});
 
 	describe('Router', function () {
 		describe('Router()', function () {
@@ -69,7 +77,7 @@
 		});
 
 		describe('dispatch()', function () {
-			var options = { history: { pushState: function() {} } };
+			var options = { history: { pushState: function() {} }, el: '#el' };
 			var Handler = Ractive.extend({
 				data: { a: 1, b: 2, c: 3, x: 4 }
 			});

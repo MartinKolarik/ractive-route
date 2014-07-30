@@ -12,7 +12,7 @@
 	],
 	"author": {
 		"name": "Martin Kolárik",
-		"email": "martin@kolarik.me",
+		"email": "martin@kolarik.sk",
 		"url": "https://kolarik.me"
 	},
 	"license": "MIT",
@@ -22,7 +22,7 @@
 		"grunt-contrib-uglify": "0.5.0",
 		"mocha": "1.20.1",
 		"mocha-phantomjs": "3.5.0",
-		"ractive": "0.4.0",
+		"ractive": "0.5.5",
 		"rewire": "2.0.1"
 	},
 	"scripts": {
