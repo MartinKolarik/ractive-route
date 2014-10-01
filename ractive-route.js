@@ -1,9 +1,9 @@
 /*!
- * ractive-route 0.1.3
+ * ractive-route 0.1.4
  * https://github.com/MartinKolarik/ractive-route/
  *
  * Copyright (c) 2014 Martin Kolárik
- * martin@kolarik.me
+ * martin@kolarik.sk
  * https://kolarik.me
  *
  * Licensed under the MIT license
@@ -22,8 +22,8 @@
 	/**
 	 * Route
 	 *
-	 * @param {string} pattern
-	 * @param {function} Handler
+	 * @param {String} pattern
+	 * @param {Function} Handler
 	 * @param {Object} [observe]
 	 * @param {Object} [router]
 	 * @constructor
@@ -97,7 +97,7 @@
 	
 		// not a component
 		if (!this.isComponent) {
-			this.Handler({ el: this.router.el, data: data });
+			this.Handler({ el: this.router.el, data: data, uri: this.router.uri });
 		} else {
 			// init new Ractive
 			this.view = new this.Handler({
@@ -124,9 +124,9 @@
 	/**
 	 * Match
 	 *
-	 * @param {string} request
-	 * @param {boolean} strict
-	 * @returns {boolean}
+	 * @param {String} request
+	 * @param {Boolean} strict
+	 * @returns {Boolean}
 	 * @private
 	 */
 	Route.prototype.match = function (request, strict) {
@@ -138,7 +138,7 @@
 	/**
 	 * Parse path
 	 *
-	 * @param {string} path
+	 * @param {String} path
 	 * @returns {Object}
 	 * @private
 	 */
@@ -158,8 +158,8 @@
 	/**
 	 * Extend handler
 	 *
-	 * @param {function} Handler
-	 * @returns {function}
+	 * @param {Function} Handler
+	 * @returns {Function}
 	 * @private
 	 */
 	function extendHandler(Handler) {
@@ -179,7 +179,7 @@
 	/**
 	 * Parse pattern
 	 *
-	 * @param {string} pattern
+	 * @param {String} pattern
 	 * @returns {Array}
 	 * @private
 	 */
@@ -208,8 +208,8 @@
 	/**
 	 * Pattern to RegExp string
 	 *
-	 * @param {string} pattern
-	 * @returns {string}
+	 * @param {String} pattern
+	 * @returns {String}
 	 * @private
 	 */
 	function patternToRegExpString(pattern) {
@@ -222,13 +222,14 @@
 	/**
 	 * Pattern to strict RegExp
 	 *
-	 * @param {string} pattern
+	 * @param {String} pattern
 	 * @returns {RegExp}
 	 * @private
 	 */
 	function patternToStrictRegExp(pattern) {
 		return new RegExp(patternToRegExpString(pattern));
 	}
+	
 	
 	/**
 	 * Router
@@ -253,8 +254,8 @@
 	/**
 	 * Add route
 	 *
-	 * @param {string} pattern
-	 * @param {function} Handler
+	 * @param {String} pattern
+	 * @param {Function} Handler
 	 * @param {Object} [observe]
 	 * @returns {Router}
 	 * @public
@@ -268,8 +269,8 @@
 	/**
 	 * Build hash
 	 *
-	 * @param {string} mixIn
-	 * @returns {string}
+	 * @param {String} mixIn
+	 * @returns {String}
 	 * @private
 	 */
 	Router.prototype.buildHash = function (mixIn) {
@@ -284,7 +285,7 @@
 	 * Build QS
 	 *
 	 * @param {Array} mixIn
-	 * @returns {string}
+	 * @returns {String}
 	 * @private
 	 */
 	Router.prototype.buildQS = function (mixIn) {
@@ -294,7 +295,7 @@
 	/**
 	 * Dispatch
 	 *
-	 * @param {string} request
+	 * @param {String} request
 	 * @param {Object} [options]
 	 * @returns {Router}
 	 * @public
@@ -335,7 +336,7 @@
 	/**
 	 * Get URI
 	 *
-	 * @returns {string}
+	 * @returns {String}
 	 * @public
 	 */
 	Router.prototype.getUri = function () {
@@ -356,7 +357,7 @@
 	/**
 	 * Get the first `route` matching the `request`
 	 *
-	 * @param {string} request
+	 * @param {String} request
 	 * @returns {Object|null}
 	 * @public
 	 */
@@ -375,7 +376,7 @@
 	/**
 	 * Redirect
 	 *
-	 * @param {string} request
+	 * @param {String} request
 	 * @returns {Router}
 	 * @private
 	 */
@@ -418,8 +419,8 @@
 	/**
 	 * Update
 	 *
-	 * @param {boolean} [pathChange]
-	 * @param {boolean} [history] - true = always, false = never, undefined = if something changed
+	 * @param {Boolean} [pathChange]
+	 * @param {Boolean} [history] - true = always, false = never, undefined = if something changed
 	 * @param {Object} [uri]
 	 * @returns {Router}
 	 * @private
@@ -502,7 +503,7 @@
 	 * @param {Object} oldUri
 	 * @param {Object} newUri
 	 * @param {Object} route
-	 * @returns {boolean}
+	 * @returns {Boolean}
 	 * @private
 	 */
 	function shouldDispatch(oldUri, newUri, route) {
@@ -510,6 +511,7 @@
 			|| oldUri.qs !== newUri.qs
 			|| (decodeURIComponent(oldUri.hash) !== decodeURIComponent(newUri.hash) && (!route || route.observe.hash.length));
 	}
+	
 	
 	/**
 	 * Assign
@@ -548,7 +550,7 @@
 	 * Is empty
 	 *
 	 * @param {*} value
-	 * @returns {boolean}
+	 * @returns {Boolean}
 	 * @private
 	 */
 	function isEmpty(value) {
@@ -562,8 +564,8 @@
 	/**
 	 * Join paths
 	 *
-	 * @param {...string} parts
-	 * @returns {string}
+	 * @param {...String} parts
+	 * @returns {String}
 	 * @private
 	 */
 	function joinPaths(parts) {
@@ -576,7 +578,7 @@
 	 * Parents
 	 *
 	 * @param {Element} el
-	 * @param {string} name
+	 * @param {String} name
 	 * @returns {Element|null}
 	 * @private
 	 */
@@ -593,7 +595,7 @@
 	/**
 	 * Parse hash
 	 *
-	 * @param {string} hash
+	 * @param {String} hash
 	 * @param {Array} [keys]
 	 * @returns {Object}
 	 * @private
@@ -613,7 +615,7 @@
 	/**
 	 * Parse JSON
 	 *
-	 * @param {string} string
+	 * @param {String} string
 	 * @returns {*}
 	 * @private
 	 */
@@ -628,7 +630,7 @@
 	/**
 	 * Parse URI
 	 *
-	 * @param {string} uri
+	 * @param {String} uri
 	 * @returns {{protocol: string, host: string, path: string, qs: string, hash: string}}
 	 * @private
 	 */
@@ -647,7 +649,7 @@
 	/**
 	 * Parse QS
 	 *
-	 * @param {string} qs
+	 * @param {String} qs
 	 * @param {Array} [keys]
 	 * @returns {Object}
 	 * @private
@@ -678,7 +680,7 @@
 	 * Pick
 	 *
 	 * @param {Object} object
-	 * @param {Array|function} keys
+	 * @param {Array|Function} keys
 	 * @returns {Object}
 	 * @private
 	 */
@@ -703,7 +705,7 @@
 	/**
 	 * Scroll to
 	 *
-	 * @param {string} id
+	 * @param {String} id
 	 * @private
 	 */
 	function scrollTo(id) {
@@ -720,7 +722,7 @@
 	 * Stringify
 	 *
 	 * @param {*} value
-	 * @returns {string}
+	 * @returns {String}
 	 * @private
 	 */
 	function stringify(value) {
@@ -735,7 +737,7 @@
 	 * Stringify hash
 	 *
 	 * @param {Object} data
-	 * @returns {string}
+	 * @returns {String}
 	 * @private
 	 */
 	function stringifyHash(data) {
@@ -749,7 +751,7 @@
 	/**
 	 * Stringify QS
 	 * @param {Object} data
-	 * @returns {string}
+	 * @returns {String}
 	 */
 	function stringifyQS(data) {
 		var qs = '';
@@ -764,6 +766,7 @@
 			? '?' + qs.substr(1)
 			: '';
 	}
+	
 
 	Router.Route = Route;
 	return Ractive.Router = Router;
