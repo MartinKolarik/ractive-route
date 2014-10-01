@@ -1,8 +1,8 @@
 /**
  * Route
  *
- * @param {string} pattern
- * @param {function} Handler
+ * @param {String} pattern
+ * @param {Function} Handler
  * @param {Object} [observe]
  * @param {Object} [router]
  * @constructor
@@ -76,7 +76,7 @@ Route.prototype.init = function (uri, data) {
 
 	// not a component
 	if (!this.isComponent) {
-		this.Handler({ el: this.router.el, data: data });
+		this.Handler({ el: this.router.el, data: data, uri: this.router.uri });
 	} else {
 		// init new Ractive
 		this.view = new this.Handler({
@@ -103,9 +103,9 @@ Route.prototype.init = function (uri, data) {
 /**
  * Match
  *
- * @param {string} request
- * @param {boolean} strict
- * @returns {boolean}
+ * @param {String} request
+ * @param {Boolean} strict
+ * @returns {Boolean}
  * @private
  */
 Route.prototype.match = function (request, strict) {
@@ -117,7 +117,7 @@ Route.prototype.match = function (request, strict) {
 /**
  * Parse path
  *
- * @param {string} path
+ * @param {String} path
  * @returns {Object}
  * @private
  */
@@ -137,8 +137,8 @@ Route.prototype.parsePath = function(path) {
 /**
  * Extend handler
  *
- * @param {function} Handler
- * @returns {function}
+ * @param {Function} Handler
+ * @returns {Function}
  * @private
  */
 function extendHandler(Handler) {
@@ -158,7 +158,7 @@ function extendHandler(Handler) {
 /**
  * Parse pattern
  *
- * @param {string} pattern
+ * @param {String} pattern
  * @returns {Array}
  * @private
  */
@@ -187,8 +187,8 @@ function patternToRegExp(pattern) {
 /**
  * Pattern to RegExp string
  *
- * @param {string} pattern
- * @returns {string}
+ * @param {String} pattern
+ * @returns {String}
  * @private
  */
 function patternToRegExpString(pattern) {
@@ -201,7 +201,7 @@ function patternToRegExpString(pattern) {
 /**
  * Pattern to strict RegExp
  *
- * @param {string} pattern
+ * @param {String} pattern
  * @returns {RegExp}
  * @private
  */

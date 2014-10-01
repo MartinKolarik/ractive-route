@@ -35,7 +35,7 @@ function compact(collection) {
  * Is empty
  *
  * @param {*} value
- * @returns {boolean}
+ * @returns {Boolean}
  * @private
  */
 function isEmpty(value) {
@@ -49,8 +49,8 @@ function isEmpty(value) {
 /**
  * Join paths
  *
- * @param {...string} parts
- * @returns {string}
+ * @param {...String} parts
+ * @returns {String}
  * @private
  */
 function joinPaths(parts) {
@@ -63,7 +63,7 @@ function joinPaths(parts) {
  * Parents
  *
  * @param {Element} el
- * @param {string} name
+ * @param {String} name
  * @returns {Element|null}
  * @private
  */
@@ -80,7 +80,7 @@ function parents(el, name) {
 /**
  * Parse hash
  *
- * @param {string} hash
+ * @param {String} hash
  * @param {Array} [keys]
  * @returns {Object}
  * @private
@@ -100,7 +100,7 @@ function parseHash(hash, keys) {
 /**
  * Parse JSON
  *
- * @param {string} string
+ * @param {String} string
  * @returns {*}
  * @private
  */
@@ -115,7 +115,7 @@ function parseJSON(string) {
 /**
  * Parse URI
  *
- * @param {string} uri
+ * @param {String} uri
  * @returns {{protocol: string, host: string, path: string, qs: string, hash: string}}
  * @private
  */
@@ -134,7 +134,7 @@ function parseUri(uri) {
 /**
  * Parse QS
  *
- * @param {string} qs
+ * @param {String} qs
  * @param {Array} [keys]
  * @returns {Object}
  * @private
@@ -165,7 +165,7 @@ function parseQS(qs, keys) {
  * Pick
  *
  * @param {Object} object
- * @param {Array|function} keys
+ * @param {Array|Function} keys
  * @returns {Object}
  * @private
  */
@@ -190,7 +190,7 @@ function pick(object, keys) {
 /**
  * Scroll to
  *
- * @param {string} id
+ * @param {String} id
  * @private
  */
 function scrollTo(id) {
@@ -207,7 +207,7 @@ function scrollTo(id) {
  * Stringify
  *
  * @param {*} value
- * @returns {string}
+ * @returns {String}
  * @private
  */
 function stringify(value) {
@@ -222,7 +222,7 @@ function stringify(value) {
  * Stringify hash
  *
  * @param {Object} data
- * @returns {string}
+ * @returns {String}
  * @private
  */
 function stringifyHash(data) {
@@ -236,7 +236,7 @@ function stringifyHash(data) {
 /**
  * Stringify QS
  * @param {Object} data
- * @returns {string}
+ * @returns {String}
  */
 function stringifyQS(data) {
 	var qs = '';

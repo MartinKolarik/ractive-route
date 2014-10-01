@@ -21,8 +21,8 @@ function Router(options) {
 /**
  * Add route
  *
- * @param {string} pattern
- * @param {function} Handler
+ * @param {String} pattern
+ * @param {Function} Handler
  * @param {Object} [observe]
  * @returns {Router}
  * @public
@@ -36,8 +36,8 @@ Router.prototype.addRoute = function (pattern, Handler, observe) {
 /**
  * Build hash
  *
- * @param {string} mixIn
- * @returns {string}
+ * @param {String} mixIn
+ * @returns {String}
  * @private
  */
 Router.prototype.buildHash = function (mixIn) {
@@ -52,7 +52,7 @@ Router.prototype.buildHash = function (mixIn) {
  * Build QS
  *
  * @param {Array} mixIn
- * @returns {string}
+ * @returns {String}
  * @private
  */
 Router.prototype.buildQS = function (mixIn) {
@@ -62,7 +62,7 @@ Router.prototype.buildQS = function (mixIn) {
 /**
  * Dispatch
  *
- * @param {string} request
+ * @param {String} request
  * @param {Object} [options]
  * @returns {Router}
  * @public
@@ -103,7 +103,7 @@ Router.prototype.dispatch = function (request, options) {
 /**
  * Get URI
  *
- * @returns {string}
+ * @returns {String}
  * @public
  */
 Router.prototype.getUri = function () {
@@ -124,7 +124,7 @@ Router.prototype.init = function (options) {
 /**
  * Get the first `route` matching the `request`
  *
- * @param {string} request
+ * @param {String} request
  * @returns {Object|null}
  * @public
  */
@@ -143,7 +143,7 @@ Router.prototype.match = function (request) {
 /**
  * Redirect
  *
- * @param {string} request
+ * @param {String} request
  * @returns {Router}
  * @private
  */
@@ -186,8 +186,8 @@ Router.prototype.unwatchState = function () {
 /**
  * Update
  *
- * @param {boolean} [pathChange]
- * @param {boolean} [history] - true = always, false = never, undefined = if something changed
+ * @param {Boolean} [pathChange]
+ * @param {Boolean} [history] - true = always, false = never, undefined = if something changed
  * @param {Object} [uri]
  * @returns {Router}
  * @private
@@ -270,7 +270,7 @@ Router.prototype.watchState = function () {
  * @param {Object} oldUri
  * @param {Object} newUri
  * @param {Object} route
- * @returns {boolean}
+ * @returns {Boolean}
  * @private
  */
 function shouldDispatch(oldUri, newUri, route) {

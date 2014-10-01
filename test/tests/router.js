@@ -92,6 +92,18 @@
 				router.dispatch('/xxx/yyy?aaa#bbb');
 			});
 
+			it('should call the handler with correct options', function (done) {
+				new Router(options).addRoute('/:aa', function (options) {
+					expect(options).to.deep.equal({
+						el: '#el',
+						data: { aa: 123 },
+						uri: { hash: '#789', host: '', path: '/123', protocol: '', qs: '?q=456'  }
+					});
+
+					done();
+				}).dispatch('/123?q=456#789');
+			});
+
 			it('should dispatch the request if path changed', function (done) {
 				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx');
 				router.routes[0].Handler.prototype.init = function () {
