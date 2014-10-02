@@ -1,5 +1,5 @@
 /*!
- * ractive-route 0.1.4
+ * ractive-route 0.2.0
  * https://github.com/MartinKolarik/ractive-route/
  *
  * Copyright (c) 2014 Martin Kolárik
@@ -35,7 +35,7 @@
 		this.regExp = patternToRegExp(pattern);
 		this.strictRegExp = patternToStrictRegExp(pattern);
 		this.isComponent = !!Handler.extend;
-		this.Handler = this.isComponent ? extendHandler(Handler) : Handler;
+		this.Handler = Handler;
 		this.observe = assign({ qs: [], hash: [], state: [] }, observe);
 		this.allObserved = this.observe.qs.concat(this.observe.hash, this.observe.state);
 		this.router = router || {};
@@ -154,27 +154,6 @@
 	
 		return data;
 	};
-	
-	/**
-	 * Extend handler
-	 *
-	 * @param {Function} Handler
-	 * @returns {Function}
-	 * @private
-	 */
-	function extendHandler(Handler) {
-		return Handler.extend({ // see ractive#837
-			init: function (options) {
-				if (options.data) {
-					this.set(options.data);
-				}
-	
-				if (this._super) {
-					this._super();
-				}
-			}
-		});
-	}
 	
 	/**
 	 * Parse pattern

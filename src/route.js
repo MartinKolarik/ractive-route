@@ -14,7 +14,7 @@ function Route(pattern, Handler, observe, router) {
 	this.regExp = patternToRegExp(pattern);
 	this.strictRegExp = patternToStrictRegExp(pattern);
 	this.isComponent = !!Handler.extend;
-	this.Handler = this.isComponent ? extendHandler(Handler) : Handler;
+	this.Handler = Handler;
 	this.observe = assign({ qs: [], hash: [], state: [] }, observe);
 	this.allObserved = this.observe.qs.concat(this.observe.hash, this.observe.state);
 	this.router = router || {};
@@ -133,27 +133,6 @@ Route.prototype.parsePath = function(path) {
 
 	return data;
 };
-
-/**
- * Extend handler
- *
- * @param {Function} Handler
- * @returns {Function}
- * @private
- */
-function extendHandler(Handler) {
-	return Handler.extend({ // see ractive#837
-		init: function (options) {
-			if (options.data) {
-				this.set(options.data);
-			}
-
-			if (this._super) {
-				this._super();
-			}
-		}
-	});
-}
 
 /**
  * Parse pattern

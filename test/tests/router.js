@@ -105,7 +105,8 @@
 			});
 
 			it('should dispatch the request if path changed', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler).dispatch('/xx');
 				router.routes[0].Handler.prototype.init = function () {
 					done();
 				};
@@ -114,7 +115,8 @@
 			});
 
 			it('should dispatch the request if QS changed', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx?x');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler).dispatch('/xx?x');
 				router.routes[0].Handler.prototype.init = function () {
 					done();
 				};
@@ -123,7 +125,8 @@
 			});
 
 			it('should dispatch the request if observed hash changed', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler, { hash: [ 'x' ] }).dispatch('/xx#x');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler, { hash: [ 'x' ] }).dispatch('/xx#x');
 				router.routes[0].Handler.prototype.init = function () {
 					done();
 				};
@@ -132,7 +135,8 @@
 			});
 
 			it('shouldn\'t dispatch the request if path didn\'t change', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler).dispatch('/xxxx');
 				router.update = function () {
 					done();
 				};
@@ -140,11 +144,12 @@
 					done(new Error('Request dispatched.'));
 				};
 
-				router.dispatch('/xx');
+				router.dispatch('/xxxx');
 			});
 
 			it('shouldn\'t dispatch the request if QS didn\'t change', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx?x=5');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler).dispatch('/xx?x=5');
 				router.update = function () {
 					done();
 				};
@@ -156,7 +161,8 @@
 			});
 
 			it('shouldn\'t dispatch the request if observed hash didn\'t change', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler, { hash: [ 'x' ] }).dispatch('/xx#!{"x":5}');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler, { hash: [ 'x' ] }).dispatch('/xx#!{"x":5}');
 				router.update = function () {
 					done();
 				};
@@ -168,7 +174,8 @@
 			});
 
 			it('shouldn\'t dispatch the request if hash changed but it\'s not being observed', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx#x');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler).dispatch('/xx#x');
 				router.update = function () {
 					done();
 				};
@@ -180,7 +187,8 @@
 			});
 
 			it('should dispatch the request if path didn\'t change but `reload`=true', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler).dispatch('/xx');
 				router.routes[0].Handler.prototype.init = function () {
 					done();
 				};
@@ -189,7 +197,8 @@
 			});
 
 			it('should dispatch the request if QS didn\'t change but `reload`=true', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler).dispatch('/xx?x');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler).dispatch('/xx?x');
 				router.routes[0].Handler.prototype.init = function () {
 					done();
 				};
@@ -198,7 +207,8 @@
 			});
 
 			it('should dispatch the request if hash didn\'t change but `reload`=true', function (done) {
-				var router = new Router(options).addRoute('/:aa', Handler, { hash: [ 'x' ] }).dispatch('/xx#x');
+				var handler = Handler.extend();
+				var router = new Router(options).addRoute('/:aa', handler, { hash: [ 'x' ] }).dispatch('/xx#x');
 				router.routes[0].Handler.prototype.init = function () {
 					done();
 				};
