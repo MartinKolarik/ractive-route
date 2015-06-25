@@ -6,6 +6,7 @@
  * @public
  */
 function Router(options) {
+	this.globals = options.globals || [];
 	this.basePath = options.basePath || '';
 	this.el = options.el;
 	this.data = options.data || function () { return {}; };
@@ -236,7 +237,15 @@ Router.prototype.watchLinks = function (pattern) {
 			var href = el.getAttribute('href') || el.getAttribute('data-href');
 
 			if (href && !el.classList.contains('router-ignore') && pattern.test(href)) {
-				_this.dispatch(href);
+				var options = { state: {} };
+
+				if (_this.route && _this.route.view) {
+					_this.globals.forEach(function (global) {
+						options.state[global] = _this.route.view.get(global);
+					});
+				}
+
+				_this.dispatch(href, options);
 
 				e.preventDefault();
 			}
