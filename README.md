@@ -12,9 +12,9 @@ There are three ways to get ractive-route:
 2. [Download the latest release](https://github.com/MartinKolarik/ractive-route/releases).
 3. Clone the repo: `$ git clone https://github.com/MartinKolarik/ractive-route.git`.
 
-ractive-route will always expose itself as ```Ractive.Router```. Additionally, you can load it using AMD or CommonJS module loader.
+ractive-route will always expose itself as `Ractive.Router`. Additionally, you can load it using AMD or CommonJS module loader.
 
-Version 0.2.x requires Ractive v0.6.x.
+Version 0.2.x requires Ractive v0.6.x or v0.7.x.
 
 ## API
 
