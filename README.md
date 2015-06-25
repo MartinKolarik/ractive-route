@@ -14,8 +14,6 @@ There are three ways to get ractive-route:
 
 ractive-route will always expose itself as `Ractive.Router`. Additionally, you can load it using AMD or CommonJS module loader.
 
-Version 0.2.x requires Ractive v0.6.x or v0.7.x.
-
 ## API
 
 ### new Router(options)
