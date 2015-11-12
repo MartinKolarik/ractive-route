@@ -145,4 +145,4 @@ Perform `dispatch()` on `popstate`.
 Stop listening to `popstate` events.
 
 ## License
-Copyright (c) 2014 Martin Kolárik. Released under the MIT license.
+Copyright (c) 2014 - 2015 Martin Kolárik. Released under the MIT license.
