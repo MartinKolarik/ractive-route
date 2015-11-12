@@ -81,6 +81,16 @@ Router.prototype.dispatch = function (request, options) {
 
 	if (options.reload || shouldDispatch(this.uri, uri, route)) {
 		// prepare data
+		if (this.route && this.route.view) {
+			options.state = options.state || {};
+
+			this.globals.forEach(function (global) {
+				if (options.state[global] === undefined) {
+					options.state[global] = this.route.view.get(global);
+				}
+			}, this);
+		}
+
 		var defaults = typeof this.data === 'function' ? this.data() : this.data;
 		var data = assign(defaults, options.state, options.hash, options.qs);
 
@@ -237,15 +247,7 @@ Router.prototype.watchLinks = function (pattern) {
 			var href = el.getAttribute('href') || el.getAttribute('data-href');
 
 			if (href && !el.classList.contains('router-ignore') && pattern.test(href)) {
-				var options = { state: {} };
-
-				if (_this.route && _this.route.view) {
-					_this.globals.forEach(function (global) {
-						options.state[global] = _this.route.view.get(global);
-					});
-				}
-
-				_this.dispatch(href, options);
+				_this.dispatch(href);
 
 				e.preventDefault();
 			}
