@@ -1,8 +1,8 @@
 /*!
- * ractive-route 0.3.1
+ * ractive-route 0.3.2
  * https://github.com/MartinKolarik/ractive-route/
  *
- * Copyright (c) 2014 - 2015 Martin Kolárik
+ * Copyright (c) 2014 - 2016 Martin Kolárik
  * martin@kolarik.sk
  * http://kolarik.sk
  *
@@ -224,6 +224,7 @@
 		this.data = options.data || function () { return {}; };
 		this.history = options.history || history;
 		this.strictMode = !!options.strictMode;
+		this.reloadOnClick = options.reloadOnClick;
 		this.linksWatcher = null;
 		this.stateWatcher = null;
 		this.route = null;
@@ -459,7 +460,11 @@
 				var href = el.getAttribute('href') || el.getAttribute('data-href');
 	
 				if (href && !el.classList.contains('router-ignore') && pattern.test(href)) {
-					_this.dispatch(href);
+					if (_this.reloadOnClick) {
+						_this.dispatch(href, { reload: true });
+					} else {
+						_this.dispatch(href);
+					}
 	
 					e.preventDefault();
 				}

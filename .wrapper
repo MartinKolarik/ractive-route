@@ -2,7 +2,7 @@
  * <%= pkg.name %> <%= pkg.version %>
  * <%= pkg.homepage %>
  *
- * Copyright (c) 2014 - 2015 <%= pkg.author.name %>
+ * Copyright (c) 2014 - 2016 <%= pkg.author.name %>
  * <%= pkg.author.email %>
  * <%= pkg.author.url %>
  *
