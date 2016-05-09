@@ -40,6 +40,10 @@ Custom History API to use. It has to implement `pushState()` and `replaceState()
 
 If set to `false`, URLs are case insensitive and starting and trailing slashes are ignored.
 
+**reloadOnClick** `boolean` (default: `false`)
+
+If set to `true`, clicking on a link will always force a `dispatch()`.
+
 ### addRoute(pattern, Handler[, observe])
 
 **pattern** `string`
@@ -145,4 +149,4 @@ Perform `dispatch()` on `popstate`.
 Stop listening to `popstate` events.
 
 ## License
-Copyright (c) 2014 - 2015 Martin Kolárik. Released under the MIT license.
+Copyright (c) 2014 - 2016 Martin Kolárik. Released under the MIT license.
