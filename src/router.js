@@ -12,6 +12,7 @@ function Router(options) {
 	this.data = options.data || function () { return {}; };
 	this.history = options.history || history;
 	this.strictMode = !!options.strictMode;
+	this.reloadOnClick = options.reloadOnClick;
 	this.linksWatcher = null;
 	this.stateWatcher = null;
 	this.route = null;
@@ -247,7 +248,11 @@ Router.prototype.watchLinks = function (pattern) {
 			var href = el.getAttribute('href') || el.getAttribute('data-href');
 
 			if (href && !el.classList.contains('router-ignore') && pattern.test(href)) {
-				_this.dispatch(href);
+				if (_this.reloadOnClick) {
+					_this.dispatch(href, { reload: true });
+				} else {
+					_this.dispatch(href);
+				}
 
 				e.preventDefault();
 			}
