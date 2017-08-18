@@ -1,5 +1,5 @@
 /*!
- * ractive-route 0.3.2
+ * ractive-route 0.3.4
  * https://github.com/MartinKolarik/ractive-route/
  *
  * Copyright (c) 2014 - 2016 Martin Kolárik

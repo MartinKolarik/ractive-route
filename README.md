@@ -7,7 +7,7 @@ Simple routing library for Ractive.js with support for two way (model <-> URI) d
 ## Get started
 
 ```
-https://cdn.jsdelivr.net/npm/ractive-route@0.3.3/ractive-route.min.js
+https://cdn.jsdelivr.net/npm/ractive-route@0.3.4/ractive-route.min.js
 ```
 
 ractive-route will always expose itself as `Ractive.Router`. Additionally, you can load it using AMD or CommonJS module loader.
@@ -147,4 +147,4 @@ Perform `dispatch()` on `popstate`.
 Stop listening to `popstate` events.
 
 ## License
-Copyright (c) 2014 - 2016 Martin Kolárik. Released under the MIT license.
+Copyright (c) 2014 - 2017 Martin Kolárik. Released under the MIT license.
