@@ -7,7 +7,7 @@ Simple routing library for Ractive.js with support for two way (model <-> URI) d
 ## Get started
 
 ```
-https://cdn.jsdelivr.net/npm/ractive-route@0.3.4/ractive-route.min.js
+https://cdn.jsdelivr.net/npm/ractive-route@0.3.5/ractive-route.min.js
 ```
 
 ractive-route will always expose itself as `Ractive.Router`. Additionally, you can load it using AMD or CommonJS module loader.

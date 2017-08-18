@@ -1,5 +1,5 @@
 /*!
- * ractive-route 0.3.4
+ * ractive-route 0.3.5
  * https://github.com/MartinKolarik/ractive-route/
  *
  * Copyright (c) 2014 - 2016 Martin Kolárik
@@ -318,7 +318,9 @@
 		}
 	
 		// will scroll to the top if there is no matching element
-		scrollTo(uri.hash.substr(1));
+		if (!options.noScroll) {
+			scrollTo(uri.hash.substr(1));
+		}
 	
 		// update history
 		return this.update(!oldUri.path || oldUri.path !== uri.path, !options.noHistory, uri);
