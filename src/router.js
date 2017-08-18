@@ -106,7 +106,9 @@ Router.prototype.dispatch = function (request, options) {
 	}
 
 	// will scroll to the top if there is no matching element
-	scrollTo(uri.hash.substr(1));
+	if (!options.noScroll) {
+		scrollTo(uri.hash.substr(1));
+	}
 
 	// update history
 	return this.update(!oldUri.path || oldUri.path !== uri.path, !options.noHistory, uri);
