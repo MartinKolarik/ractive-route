@@ -1,5 +1,5 @@
 /*!
- * ractive-route 0.3.5
+ * ractive-route 0.3.6
  * https://github.com/MartinKolarik/ractive-route/
  *
  * Copyright (c) 2014 - 2016 Martin Kolárik
@@ -194,7 +194,7 @@
 	function patternToRegExpString(pattern) {
 		return ('^' + pattern + '$')
 			.replace(/\/:\w+(\([^)]+\))?/g, '(?:\/([^/]+)$1)')
-			.replace(/\(\?:\/\(\[\^\/]\+\)\(/, '(?:/(')
+			.replace(/\(\?:\/\(\[\^\/]\+\)\(/g, '(?:/(')
 			.replace(/\//g, '\\/');
 	}
 	
