@@ -173,7 +173,7 @@ function patternToRegExp(pattern) {
 function patternToRegExpString(pattern) {
 	return ('^' + pattern + '$')
 		.replace(/\/:\w+(\([^)]+\))?/g, '(?:\/([^/]+)$1)')
-		.replace(/\(\?:\/\(\[\^\/]\+\)\(/, '(?:/(')
+		.replace(/\(\?:\/\(\[\^\/]\+\)\(/g, '(?:/(')
 		.replace(/\//g, '\\/');
 }
 
