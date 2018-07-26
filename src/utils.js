@@ -32,6 +32,17 @@ function compact(collection) {
 }
 
 /**
+ * Decode + characters to spaces in application/x-www-form-urlencoded string
+ *
+ * @param {string} string
+ * @returns {string}
+ * @private
+ */
+function decodeForm (string) {
+	return string.replace(/\+/g, ' ');
+}
+
+/**
  * Is empty
  *
  * @param {*} value
@@ -151,7 +162,7 @@ function parseQS(qs, keys) {
 			pair = pairs[i].split('=');
 
 			if((!isEmpty(pair[1])) && (!isEmpty(parseJSON(pair[1])))) {
-				parsed[decodeURIComponent(pair[0])] = parseJSON(decodeURIComponent(pair[1]));
+				parsed[decodeForm(decodeURIComponent(pair[0]))] = parseJSON(decodeForm(decodeURIComponent(pair[1])));
 			}
 		}
 	}
