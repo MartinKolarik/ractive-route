@@ -24,7 +24,7 @@ ractive-route will always expose itself as `Ractive.Router`. Additionally, you c
 
 **data** `function`
 
-A function that will be invoked every time a time a new component is created and the returned data will be passed to your component.
+A function that will be invoked every time a new component is created and the returned data will be passed to your component.
 
 **basePath** `string` (default: `''`)
 
