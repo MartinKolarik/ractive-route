@@ -1,8 +1,8 @@
 /*!
- * ractive-route 0.3.9
+ * ractive-route 0.3.10
  * https://github.com/MartinKolarik/ractive-route/
  *
- * Copyright (c) 2014 - 2018 Martin Kolárik
+ * Copyright (c) 2014 Martin Kolárik
  * martin@kolarik.sk
  * http://kolarik.sk
  *
@@ -426,7 +426,7 @@
 		uri = uri || { qs: '', hash: '' };
 		var path = joinPaths(this.basePath, this.uri.path);
 		var qs = this.buildQS([ parseQS(uri.qs) ].concat(!pathChange ? [ parseQS(location.search) ] : []));
-		var hash = this.buildHash(uri.hash);
+		var hash = uri.hash || pathChange || qs !== location.search ? this.buildHash(uri.hash) : location.hash;
 		var newUri = path + qs + hash;
 		var oldUri = location.pathname + location.search + location.hash;
 		var state = this.route.getState().state;
