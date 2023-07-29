@@ -214,7 +214,7 @@ Router.prototype.update = function (pathChange, history, uri) {
 	uri = uri || { qs: '', hash: '' };
 	var path = joinPaths(this.basePath, this.uri.path);
 	var qs = this.buildQS([ parseQS(uri.qs) ].concat(!pathChange ? [ parseQS(location.search) ] : []));
-	var hash = this.buildHash(uri.hash);
+	var hash = uri.hash || pathChange || qs !== location.search ? this.buildHash(uri.hash) : location.hash;
 	var newUri = path + qs + hash;
 	var oldUri = location.pathname + location.search + location.hash;
 	var state = this.route.getState().state;
