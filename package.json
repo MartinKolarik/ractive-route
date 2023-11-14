@@ -1,6 +1,6 @@
 {
 	"name": "ractive-route",
-	"version": "0.3.10",
+	"version": "0.3.11",
 	"description": "Routing library for Ractive.js",
 	"homepage": "https://github.com/MartinKolarik/ractive-route/",
 	"github": "https://github.com/MartinKolarik/ractive-route/",
@@ -13,7 +13,7 @@
 	"author": {
 		"name": "Martin Kolárik",
 		"email": "martin@kolarik.sk",
-		"url": "http://kolarik.sk"
+		"url": "https://kolarik.sk"
 	},
 	"license": "MIT",
 	"devDependencies": {

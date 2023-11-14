@@ -1,10 +1,10 @@
 /*!
- * ractive-route 0.3.10
+ * ractive-route 0.3.11
  * https://github.com/MartinKolarik/ractive-route/
  *
  * Copyright (c) 2014 Martin Kolárik
  * martin@kolarik.sk
- * http://kolarik.sk
+ * https://kolarik.sk
  *
  * Licensed under the MIT license
  * http://www.opensource.org/licenses/MIT
@@ -374,7 +374,13 @@
 	 * @private
 	 */
 	Router.prototype.redirect = function (request) {
-		location.pathname = joinPaths(this.basePath, request);
+		var uri = parseUri(request);
+	
+		if (!uri.protocol && !uri.host) {
+			location.pathname = joinPaths(this.basePath, request);
+		} else {
+			location.href = request;
+		}
 	
 		return this;
 	};
