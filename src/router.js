@@ -162,7 +162,13 @@ Router.prototype.match = function (request) {
  * @private
  */
 Router.prototype.redirect = function (request) {
-	location.pathname = joinPaths(this.basePath, request);
+	var uri = parseUri(request);
+
+	if (!uri.protocol && !uri.host) {
+		location.pathname = joinPaths(this.basePath, request);
+	} else {
+		location.href = request;
+	}
 
 	return this;
 };
