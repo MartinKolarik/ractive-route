@@ -165,7 +165,7 @@ Router.prototype.redirect = function (request) {
 	var uri = parseUri(request);
 
 	if (!uri.protocol && !uri.host) {
-		location.pathname = joinPaths(this.basePath, request);
+		location.href = buildRouteString(this.basePath, uri);
 	} else {
 		location.href = request;
 	}

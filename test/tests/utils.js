@@ -84,6 +84,25 @@ describe('utils.js', function () {
 		});
 	});
 
+	describe('buildRouteString()', function () {
+		var buildRouteString = utils.__get__('buildRouteString');
+
+		it('should concatenate basePath, path, qs, and hash correctly', function () {
+			var uri = { path: '/user/profile', qs: '?tab=settings', hash: '#avatar' };
+			expect(buildRouteString('/app', uri)).to.equal('/app/user/profile?tab=settings#avatar');
+		});
+
+		it('should handle an empty basePath', function () {
+			var uri = { path: '/login', qs: '', hash: '' };
+			expect(buildRouteString('', uri)).to.equal('/login');
+		});
+
+		it('should resolve trailing slashes correctly', function () {
+			var uri = { path: '/files/', qs: '?sort=desc', hash: '' };
+			expect(buildRouteString('/data/', uri)).to.equal('/data/files/?sort=desc');
+		});
+	});
+
 	describe('parseHash()', function () {
 		var parseHash = utils.__get__('parseHash');
 

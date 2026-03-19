@@ -71,6 +71,18 @@ function joinPaths(parts) {
 }
 
 /**
+ * Build route string
+ *
+ * @param {String} basePath
+ * @param {{protocol: string, host: string, path: string, qs: string, hash: string}} relativeUri
+ * @returns {String}
+ * @private
+ */
+function buildRouteString(basePath, relativeUri) {
+	return joinPaths(basePath, relativeUri.path) + relativeUri.qs + relativeUri.hash;
+}
+
+/**
  * Parents
  *
  * @param {Element} el
