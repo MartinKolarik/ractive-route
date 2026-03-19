@@ -1,5 +1,5 @@
 /*!
- * ractive-route 0.3.12
+ * ractive-route 0.3.13
  * https://github.com/MartinKolarik/ractive-route/
  *
  * Copyright (c) 2014 Martin Kolárik
@@ -368,7 +368,7 @@ Router.prototype.redirect = function (request) {
 	var uri = parseUri(request);
 
 	if (!uri.protocol && !uri.host) {
-		location.pathname = joinPaths(this.basePath, request);
+		location.href = buildRouteString(this.basePath, uri);
 	} else {
 		location.href = request;
 	}
@@ -577,6 +577,18 @@ function joinPaths(parts) {
 	return Array.prototype.slice.call(arguments)
 		.join('/')
 		.replace(/\/+/g, '/');
+}
+
+/**
+ * Build route string
+ *
+ * @param {String} basePath
+ * @param {{protocol: string, host: string, path: string, qs: string, hash: string}} relativeUri
+ * @returns {String}
+ * @private
+ */
+function buildRouteString(basePath, relativeUri) {
+	return joinPaths(basePath, relativeUri.path) + relativeUri.qs + relativeUri.hash;
 }
 
 /**
